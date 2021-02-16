@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: valheim-server
+  labels:
+    name: valheim-server
+spec:
+  containers:
+    - resources:
+      image: docker.io/lloesche/valheim-server:latest
+      name: valheim-server
+      env:
+        - name: SERVER_NAME
+          value: MyServer
+        - name: WORLD_NAME
+          value: Dedicated
+        - name: SERVER_PASS
+          value: MyPassword
+      ports:
+        - containerPort: 2456
+          hostPort: 2456
+          protocol: UDP
+        - containerPort: 2457
+          hostPort: 2457
+          protocol: UDP
+        - containerPort: 2458
+          hostPort: 2458
+          protocol: UDP
+      volumeMounts:
+        - name: valheim-storage
+          mountPath: /config
+  volumes:
+    - name: valheim-storage
+      gcePersistentDisk:
+        pdName: valheim-disk
+        fsType: ext4
