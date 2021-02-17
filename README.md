@@ -1,5 +1,5 @@
 # Valheim Server on Google Kubernetes Engine
-
+## Based on the lovely [auto-updating and backing up image from lloesche](https://hub.docker.com/r/lloesche/valheim-server)
 ## Setup
 
 1. Download and install gcloud and kubectl
